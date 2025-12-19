@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Mark Attendance</h2>
+
+    <p>
+        Select a date and mark each student as present or absent.
+    </p>
+
+    {% if students %}
+    <form method="post">
+
+        <label for="date">Attendance Date</label>
+        <input type="date" id="date" name="date" value="{{ today }}" required>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th style="text-align:center;">Present</th>
+                    <th style="text-align:center;">Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td>{{ s.name }}</td>
+                    <td style="text-align:center;">
+                        <input type="radio"
+                               name="status_{{ s.id }}"
+                               value="present"
+                               required>
+                    </td>
+                    <td style="text-align:center;">
+                        <input type="radio"
+                               name="status_{{ s.id }}"
+                               value="absent">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="submit">Save Attendance</button>
+
+    </form>
+    {% else %}
+        <div class="empty-state">
+            <p>No students found.</p>
+            <p>Please add students before marking attendance.</p>
+        </div>
+    {% endif %}
+
+    <div style="text-align:center; margin-top:25px;">
+        <a href="/">Home</a>
+        <a href="/add-student">Add Student</a>
+        <a href="/report">View Report</a>
+    </div>
+
+</div>
+
+</body>
+</html>

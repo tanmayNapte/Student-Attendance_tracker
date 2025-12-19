@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Attendance Tracker Dashboard</h2>
+
+    <!-- OVERVIEW -->
+    <table>
+        <tr>
+            <th>Total Students</th>
+            <th>Total Attendance Days</th>
+            <th>Total Present Marks</th>
+        </tr>
+        <tr>
+            <td>{{ stats.total_students or 0 }}</td>
+            <td>{{ stats.total_days or 0 }}</td>
+            <td>{{ stats.total_present or 0 }}</td>
+        </tr>
+    </table>
+
+    <!-- ACTIONS -->
+    <div style="text-align:center; margin-top:30px;">
+        <a href="/add-student">➕ Add Student</a>
+        <a href="/attendance">📝 Mark Attendance</a>
+        <a href="/report">📊 View Report</a>
+    </div>
+
+</div>
+
+</body>
+</html>

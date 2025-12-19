@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Add New Student</h2>
+
+    <p>
+        Use this form to register a student before marking attendance.
+    </p>
+
+    <form method="post">
+        <label for="name">Student Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="e.g. Tanmay Napte"
+            required
+        >
+
+        <button type="submit">Add Student</button>
+    </form>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="/">Home</a>
+        <a href="/attendance">Mark Attendance</a>
+        <a href="/report">View Report</a>
+    </div>
+
+</div>
+
+</body>
+</html>

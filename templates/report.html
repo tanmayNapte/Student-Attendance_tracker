@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Attendance Report</h2>
+
+    <p>
+        This report shows overall attendance performance for each student.
+    </p>
+
+    {% if report %}
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Total Days</th>
+                <th>Present Days</th>
+                <th>Attendance %</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in report %}
+            <tr>
+                <td>{{ r.name }}</td>
+                <td>{{ r.total_days or 0 }}</td>
+                <td>{{ r.present_days or 0 }}</td>
+                <td>
+                    {% if r.total_days %}
+                        {{ (r.present_days * 100 / r.total_days) | round(1) }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="empty-state">
+            <p>No attendance data available yet.</p>
+            <p>Add students and mark attendance to see the report.</p>
+        </div>
+    {% endif %}
+
+    <div style="text-align:center; margin-top:25px;">
+        <a href="/">Home</a>
+        <a href="/add-student">Add Student</a>
+        <a href="/attendance">Mark Attendance</a>
+    </div>
+
+</div>
+
+</body>
+</html>
